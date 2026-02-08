@@ -1,0 +1,39 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+*.egg-info/
+*.egg
+dist/
+build/
+eggs/
+*.manifest
+*.spec
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env/
+
+# IDE / editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Project-specific
+data/results/*.pkl
+data/results/*.png
+data/results/*.pdf
+!data/results/.gitkeep
+
+# Optional: keep trace_files but ignore generated content
+# data/trace_files/*.txt
+
+# OS
+.DS_Store
+Thumbs.db

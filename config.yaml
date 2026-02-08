@@ -1,0 +1,83 @@
+# CPU Scheduler Simulation Configuration
+
+# Simulation Parameters
+context_switch_time: 2  # milliseconds
+random_seed: 42
+enable_mlfq: false  # set true to include MLFQ in experiments
+
+# Workload Generation
+synthetic:
+  min_processes: 100
+  max_processes: 1000
+  default_processes: 500
+  
+  # Distributions
+  cpu_burst:
+    mean: 50    # milliseconds
+    std: 20     # milliseconds
+  
+  io_burst:
+    min: 10     # milliseconds
+    max: 100    # milliseconds
+  
+  arrival:
+    rate: 0.015  # processes per millisecond
+
+# Scheduling Algorithms
+algorithms:
+  fcfs:
+    enabled: true
+    
+  sjf:
+    enabled: true
+    preemptive: true  # SRTF when true
+    
+  round_robin:
+    enabled: true
+    time_quanta: [10, 20, 50]
+    default_quantum: 20
+    
+  priority:
+    enabled: true
+    preemptive: true
+    aging_interval: 100  # milliseconds
+    
+  mlfq:
+    enabled: false  # Bonus feature
+    num_queues: 3
+    time_quanta: [100, 50, 25]
+    boost_interval: 500
+
+# Experiments
+experiments:
+  baseline:
+    processes: 500
+    workload: mixed
+    
+  sensitivity:
+    rr_quanta: [5, 10, 20, 50, 100]
+    process_counts: [100, 500, 1000]
+    
+  workload_specific:
+    types: [cpu_intensive, io_intensive, mixed]
+    processes_per_type: 300
+    
+  scalability:
+    process_counts: [100, 200, 500, 800, 1000, 1500, 2000]
+
+# Visualization
+visualization:
+  gantt_chart:
+    max_processes: 20
+    save_formats: [png, pdf]
+    
+  comparison_charts:
+    save_formats: [png, pdf]
+    
+  dpi: 150
+
+# Output
+output:
+  results_dir: "data/results"
+  reports_dir: "docs"
+  save_raw_data: true
